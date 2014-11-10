@@ -70,42 +70,35 @@ class RectangularRoom(object):
     def __init__(self, width, height):
         """
         Initializes a rectangular room with the specified width and height.
-
         Initially, no tiles in the room have been cleaned.
-
         width: an integer > 0
         height: an integer > 0
         """
+        import numpy as np
         self.width = width
         self.height = height
-        room = pylab.zeros((height, width))
-        return room
+        self.room = np.zeros((self.height, self.width))
         
-    
     def cleanTileAtPosition(self, pos):
         """
         Mark the tile under the position POS as cleaned.
-
         Assumes that POS represents a valid position inside this room.
-
         pos: a Position
         """
         tiles = self.room
-        self.room[pos[1],pos[0]] = 1.0
-        return room
+        tiles[int(self.height-0.5)][int(self.width-0.5)] = 1.0
+        return tiles
 
 
     def isTileCleaned(self, m, n):
         """
         Return True if the tile (m, n) has been cleaned.
-
         Assumes that (m, n) represents a valid tile inside the room.
-
         m: an integer
         n: an integer
         returns: True if (m, n) is cleaned, False otherwise
         """
-        if self.room(n,m) == 1.0:
+        if self.room[n,m] == 1.0:
             return True
         else:
             return False
@@ -114,16 +107,13 @@ class RectangularRoom(object):
     def getNumTiles(self):
         """
         Return the total number of tiles in the room.
-
         returns: an integer
         """
         return self.width*self.height
         
-
     def getNumCleanedTiles(self):
         """
         Return the total number of clean tiles in the room.
-
         returns: an integer
         """
         return int(sum(sum(self.room)))
@@ -131,10 +121,9 @@ class RectangularRoom(object):
     def getRandomPosition(self):
         """
         Return a random position inside the room.
-
         returns: a Position object.
         """
-        return (random.randint(0,self.width+1),random.randint(0,self.height+1))
+        return [random.randint(0,self.width+1),random.randint(0,self.height+1)]
 
     def isPositionInRoom(self, pos):
         """
@@ -143,11 +132,11 @@ class RectangularRoom(object):
         pos: a Position object.
         returns: True if pos is in the room, False otherwise.
         """
-        if pos[0] <= self.width and pos[1] <= self.height:
+        if (self.x,self.y) <= (self.width, self.height):
             return True
         else:
             return False
-"""
+'''
 
 class Robot(object):
     """
@@ -332,5 +321,6 @@ def showPlot2(title, x_label, y_label):
 #
 #       (... your call here ...)
 #
-room = RectangularRoom(5, 5)
-room.getNumTiles() 
+'''
+room = RectangularRoom(5.0,5.0)
+#room.getNumTiles() 
