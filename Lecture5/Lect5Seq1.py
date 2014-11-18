@@ -15,7 +15,7 @@ def checkPascal(numTrials, roll):
                 break
     print 'Probability of losing =', 1.0 - yes/numTrials
 
-##checkPascal(10000, rollDie)
+#checkPascal(10000, rollDie)
 
 def rollLoadedDie():
     if random.random() < 1.0/5.5:
@@ -33,4 +33,4 @@ def flip(numFlips):
     return heads/float(numFlips)
 
 for i in range(5): #number of trials
-    print flip(10)
+    print flip(1000)
